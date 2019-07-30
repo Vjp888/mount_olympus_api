@@ -5,3 +5,53 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'csv'
+require 'pry'
+OlympianEvent.destroy_all
+Olympian.destroy_all
+Event.destroy_all
+
+CSV.foreach('db/data/olympic_data_2016.csv', headers: true) do |data|
+  olympics_data = data.to_h
+  begin
+    olympian = Olympian.find_by(name: olympics_data['Name'])
+    unless olympian
+      olympian = Olympian.create!(
+        name: olympics_data['Name'],
+        sex: olympics_data['Sex'],
+        age: olympics_data['Age'],
+        weight: olympics_data['Weight'],
+        height: olympics_data['Height'],
+        team: olympics_data['Team']
+      )
+    end
+  rescue
+    puts olympian.error
+  end
+
+  begin
+    event = Event.find_by(event_name: olympics_data['Event'])
+    unless event
+      event = Event.create!(
+        games: olympics_data['Games'],
+        sport: olympics_data['Sport'],
+        event_name: olympics_data['Event'])
+        olympian.events << event
+      else
+        olympian.events << event
+    end
+  rescue
+    puts "Failed to create Event"
+  end
+
+  begin
+    medal = OlympianEvent.find_by!(olympian_id: olympian.id, event_id: event.id)
+    unless olympics_data['Medal'] == "NA"
+      medal.update!(medal: olympics_data['Medal'])
+    else
+      medal.medal = nil
+    end
+  rescue
+    puts 'Failed to create medal'
+  end
+end
