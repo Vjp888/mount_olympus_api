@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2019_07_30_174222) do
 
   create_table "events", force: :cascade do |t|
     t.string "games"
-    t.string "sport"
     t.string "event_name"
   end
 
@@ -36,6 +35,7 @@ ActiveRecord::Schema.define(version: 2019_07_30_174222) do
     t.integer "age"
     t.integer "height"
     t.integer "weight"
+    t.string "sport"
     t.string "team"
   end
 

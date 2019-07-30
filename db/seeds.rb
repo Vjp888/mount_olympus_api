@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
-require 'pry'
+
 OlympianEvent.destroy_all
 Olympian.destroy_all
 Event.destroy_all
@@ -22,6 +22,7 @@ CSV.foreach('db/data/olympic_data_2016.csv', headers: true) do |data|
         age: olympics_data['Age'],
         weight: olympics_data['Weight'],
         height: olympics_data['Height'],
+        sport: olympics_data['Sport'],
         team: olympics_data['Team']
       )
     end
@@ -34,14 +35,13 @@ CSV.foreach('db/data/olympic_data_2016.csv', headers: true) do |data|
     unless event
       event = Event.create!(
         games: olympics_data['Games'],
-        sport: olympics_data['Sport'],
         event_name: olympics_data['Event'])
         olympian.events << event
       else
         olympian.events << event
     end
   rescue
-    puts "Failed to create Event"
+    puts event.error
   end
 
   begin
@@ -52,6 +52,6 @@ CSV.foreach('db/data/olympic_data_2016.csv', headers: true) do |data|
       medal.medal = nil
     end
   rescue
-    puts 'Failed to create medal'
+    puts medal.error
   end
 end
