@@ -35,7 +35,8 @@ CSV.foreach('db/data/olympic_data_2016.csv', headers: true) do |data|
     unless event
       event = Event.create!(
         games: olympics_data['Games'],
-        event_name: olympics_data['Event'])
+        event_name: olympics_data['Event'],
+        sport: olympics_data['Sport'])
         olympian.events << event
       else
         olympian.events << event

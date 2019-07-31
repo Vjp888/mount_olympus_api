@@ -5,8 +5,8 @@ describe 'Get request to /api/v1/olympians' do
     it 'returns all olympians with their total medals' do
       olympian_1 = Olympian.create!(name: 'bob', sex: 'M', age: 22, weight: 120, height: 140, team: "US", sport: 'basketweaving')
       olympian_2 = Olympian.create!(name: 'martha', sex: 'F', age: 200, weight: 90, height: 90, team: "GA", sport: 'fencing')
-      event_1 = Event.create!(games: 'angry', event_name: 'aaaaaa')
-      event_2 = Event.create!(games: 'meh', event_name: 'bbbbb')
+      event_1 = Event.create!(games: 'angry', event_name: 'aaaaaa', sport: 'blah')
+      event_2 = Event.create!(games: 'meh', event_name: 'bbbbb', sport: "spoooooooooorts")
       OlympianEvent.create!(olympian: olympian_1, event: event_1, medal: "bronze")
       OlympianEvent.create!(olympian: olympian_1, event: event_2, medal: "gold")
 

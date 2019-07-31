@@ -4,6 +4,7 @@ RSpec.describe Event, type: :model do
   describe 'validations' do
     it { should validate_presence_of :games }
     it { should validate_presence_of :event_name }
+    it { should validate_presence_of :sport }
   end
 
   describe 'relationships' do
