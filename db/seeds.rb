@@ -29,7 +29,7 @@ CSV.foreach('db/data/olympic_data_2016.csv', headers: true) do |data|
       )
     end
   rescue
-    puts olympian.error
+    puts olympian.errors.messages
   end
 
   begin
@@ -44,7 +44,7 @@ CSV.foreach('db/data/olympic_data_2016.csv', headers: true) do |data|
         olympian.events << event
     end
   rescue
-    puts event.error
+    puts event.errors.messages
   end
 
   begin
@@ -55,6 +55,6 @@ CSV.foreach('db/data/olympic_data_2016.csv', headers: true) do |data|
       medal.medal = nil
     end
   rescue
-    puts medal.error
+    puts medal.errors.messages
   end
 end
