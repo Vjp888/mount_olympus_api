@@ -20,9 +20,9 @@ RSpec.describe Olympian, type: :model do
     describe 'total_medals_won' do
       it 'should return a count of all medals an olympian has earned' do
         oly = Olympian.create!(name: 'bob', sex: 'M', age: 22, weight: 120, height: 140, team: "US", sport: 'basketweaving')
-        event_1 = Event.create!(games: 'angry', event_name: 'aaaaaa')
-        event_2 = Event.create!(games: 'meh', event_name: 'bbbbb')
-        event_3 = Event.create!(games: 'ha', event_name: 'ccc')
+        event_1 = Event.create!(games: 'angry', event_name: 'aaaaaa', sport: "spoooooooooorts")
+        event_2 = Event.create!(games: 'meh', event_name: 'bbbbb', sport: "spoooooooooorts")
+        event_3 = Event.create!(games: 'ha', event_name: 'ccc', sport: "spoooooooooorts")
         OlympianEvent.create!(olympian: oly, event: event_1, medal: "bronze")
         OlympianEvent.create!(olympian: oly, event: event_2, medal: "gold")
         OlympianEvent.create!(olympian: oly, event: event_3, medal: nil)

@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_07_30_174222) do
   create_table "events", force: :cascade do |t|
     t.string "games"
     t.string "event_name"
+    t.string "sport"
   end
 
   create_table "olympian_events", force: :cascade do |t|
