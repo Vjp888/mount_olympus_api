@@ -14,6 +14,7 @@ class MedalistsSerializer
 
   private
 
+  #This was a bit of a roundabout way of handling this. Was trying to think of how to order the output
   def format_medalists(medals)
     medals.map do |medal|
       olympian = medal.olympian

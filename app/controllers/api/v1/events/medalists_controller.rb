@@ -13,6 +13,8 @@ class Api::V1::Events::MedalistsController < ApplicationController
 
   private
 
+  #This is a result of a weird quirk of Rails 5.2 it doesn't like to return nil when it fails
+
   def event_exist?(id)
     begin
       Event.find(id)
@@ -21,6 +23,3 @@ class Api::V1::Events::MedalistsController < ApplicationController
     end
   end
 end
-
-
-# event.olympian_events.where.not(medal: nil).where(olympian: x)

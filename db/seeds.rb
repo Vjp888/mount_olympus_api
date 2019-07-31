@@ -11,6 +11,8 @@ OlympianEvent.destroy_all
 Olympian.destroy_all
 Event.destroy_all
 
+#This felt rather mess in terms of seeding data but I don't have the best practice with CSV importing
+
 CSV.foreach('db/data/olympic_data_2016.csv', headers: true) do |data|
   olympics_data = data.to_h
   begin
